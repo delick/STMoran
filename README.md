@@ -6,19 +6,17 @@ Calculate Moran stats in each subblock of an image.
 ## Dependencies
 - `Moran.m` function to calculate Moran's I of a given block.
 - `Blocking.m` function to divide an image into equal blocks.
-*Note: Script `woorkflow.m` will use these 2 functions, so it's better to keep them in the exact same folder.*
+- `natsort.m` & `natsortfiles.m` function to sort filenames with numbers.
+*Note: Path of dependencies should be included to MATLAB search folder.*
 
 # Usage
-## How to run
-run `Workflow.m` in Matlab &copy.
-## Input params
-- mask: `GeoTiff` | Mask image where 0 is masked and 1 is used for calculation. Default: `FinelRice0915.tif`
-- raw images: `GeoTiff` | Input at least 2 images. Single images may throw an error. Default: `NDRE.tif`
-*Note: mask and raw images should share the exact same spatial reference. Otherwise, Matlab won't output result and errors may occur.*
-## Output params
-Stats of Moran's I. From left to right, they are:
+## What to run?
+1. **`STI_LowMemory.mlx`** Calculates the spatial temporal Moran's I.
+2. **`DistMarker.mlx`** Mark the time and place of disturbance. 1 for disturbance, 0 for no disturbance.
+3. **`StartEndMarker2.mlx`** Find the starting and ending date of each disturbance. Output image includes `year` and `month` images.
+*Set output variables to `doy` for duration. This output result can't be used to calculate duration.*
+4. **Duration.mlx** Calculates the duration (in days) of each disturbance.
+5. **distMaxDuration** Max and min stats of forest disturbance duration.
 
-
-|	1st image | | | | | 	2nd image|
-|	-- | -- | -- | -- | -- | -- |
-| # of division | mean | std | max | min	|		…………………………		|
+## Input / output params
+Detailed documentations are in `*.mlx` scripts. They will guide you what to input and how to interpret results.
