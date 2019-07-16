@@ -1,0 +1,86 @@
+% This LaTeX was auto-generated from MATLAB code.
+% To make changes, update the MATLAB code and export to LaTeX again.
+
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{epstopdf}
+\usepackage{matlab}
+
+\sloppy
+\epstopdfsetup{outdir=./}
+\graphicspath{ {./GlobalMoran_images/} }
+
+\begin{document}
+
+\matlabtitle{Global Moran's I}
+
+\begin{par}
+\begin{flushleft}
+calculate global moran's I with mask.
+\end{flushleft}
+\end{par}
+
+\begin{par}
+\begin{flushleft}
+Formula: 
+\end{flushleft}
+\end{par}
+
+\begin{par}
+$$I = \frac{\sum_i\sum_j(y_i – \overline{y})(y_j – \overline{y})}{s^2\sum_i\sum_j w_{ij}}$$
+\end{par}
+
+\begin{par}
+\begin{flushleft}
+where $s^2 = \frac{\sum (y_i - \overline{y})^2}{n}$, $\overline{y} = \sum^{n}_{i=1} \frac{y_i}{n}$
+\end{flushleft}
+\end{par}
+
+\begin{matlabcode}
+function [moran_global] = GlobalMoran(image, mask)
+    [x,y] = size(image);
+    image(mask==0)=NaN;
+    x_avg = nanmean(image(:));
+    for xi = 1:x
+        for yi = 1:y
+            % if current pixel is not empty
+            if ~isnan(image(xi,yi))
+                left = xi -1;
+                right = xi +1;
+                upper = yi -1;
+                lower = yi +1;
+                coords = [left, right, upper, lower];
+                if left <= 1
+                    left = 1;
+                end
+                if right >= x
+                    right = x;
+                end
+                if upper <= 1
+                    upper = 1;
+                end
+                if lower >= y
+                    lower = y;
+                end
+                windowIM = image(left:right,upper:lower);
+                windowWt = windowIM;
+                windowWt(isnan(windowIM)) = 0;
+                windowWt(~isnan(windowIM)) = 1;
+                reshape(windowWt,size(windowIM));
+                % current pixel not empty
+            end
+        end
+    end
+end
+\end{matlabcode}
+
+\end{document}
