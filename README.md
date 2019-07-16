@@ -15,8 +15,8 @@ Calculate Moran stats in each subblock of an image.
 2. **`DistMarker.mlx`** Mark the time and place of disturbance. 1 for disturbance, 0 for no disturbance.
 3. **`StartEndMarker2.mlx`** Find the starting and ending date of each disturbance. Output image includes `year` and `month` images.
 *Set output variables to `doy` for duration. This output result can't be used to calculate duration.*
-4. **Duration.mlx** Calculates the duration (in days) of each disturbance.
-5. **distMaxDuration** Max and min stats of forest disturbance duration.
+4. **`Duration.mlx`** Calculates the duration (in days) of each disturbance.
+5. **`distMaxDuration.mlx`** Max and min stats of forest disturbance duration.
 
 ## Input / output params
 Detailed documentations are in `*.mlx` scripts. They will guide you what to input and how to interpret results.
