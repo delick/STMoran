@@ -1,5 +1,5 @@
 # Moran
-Calculate Moran stats in each subblock of an image.
+Calculate spatial-temporal Moran's I and search for forest disturbance.
 
 
 
